@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qodirov Shoxrux — boshlovchi veb-dasturchi</title>
+    <meta name="description" content="Qodirov Shoxrux — JizPI talabasi va boshlovchi veb-dasturchi. Loyihalarim, hikoyam, she'rlarim va yo'lim.">
+    <meta name="author" content="Qodirov Shoxrux">
+
+    <!-- Saytning "asosiy" manzili (bir sahifa bir nechta manzilda ochilsa, Google qaysi biri aslligini biladi) -->
+    <link rel="canonical" href="https://qodiroff2008.github.io/">
+
+    <!-- ===== Ikonkalar ===== -->
+    <link rel="icon" href="favicon.ico" sizes="48x48">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+
+    <!-- ===== Ulashish (Telegram, Facebook, LinkedIn...) — Open Graph =====
+         Havola yuborilganda shu sarlavha, tavsif va rasm chiqadi -->
+    <meta property="og:type" content="profile">
+    <meta property="og:site_name" content="Qodirov Shoxrux">
+    <meta property="og:title" content="Qodirov Shoxrux — boshlovchi veb-dasturchi">
+    <meta property="og:description" content="JizPI talabasi. Loyihalarim, hikoyam, she'rlarim va yo'lim.">
+    <meta property="og:url" content="https://qodiroff2008.github.io/">
+    <meta property="og:image" content="https://qodiroff2008.github.io/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Qodirov Shoxrux — boshlovchi veb-dasturchi">
+    <meta property="og:locale" content="uz_UZ">
+    <meta property="profile:first_name" content="Shoxrux">
+    <meta property="profile:last_name" content="Qodirov">
+    <!-- X (Twitter) uchun -->
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- ===== Shriftlar — saytning o'zida. preload — eng birinchi yuklansin ===== -->
+    <link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/lora-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+    <!-- ===== Google uchun tuzilgan ma'lumot (JSON-LD): "bu sayt — shu inson haqida" ===== -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      "url": "https://qodiroff2008.github.io/",
+      "mainEntity": {
+        "@type": "Person",
+        "name": "Qodirov Shoxrux",
+        "alternateName": "Shoxrux Qodirov",
+        "url": "https://qodiroff2008.github.io/",
+        "image": "https://qodiroff2008.github.io/og-image.jpg",
+        "jobTitle": "Boshlovchi veb-dasturchi",
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "Jizzax politexnika instituti"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Jizzax",
+          "addressCountry": "UZ"
+        },
+        "knowsLanguage": ["uz", "en"],
+        "sameAs": [
+          "https://t.me/shoxruh2208",
+          "https://www.instagram.com/sh_qodirov1",
+          "https://www.youtube.com/@shoxruxqodirov-2208",
+          "https://github.com/qodiroff2008"
+        ]
+      }
+    }
+    </script>
+
+    <!-- Brauzerga: sayt ham yorug', ham qorong'i rejimni qo'llab-quvvatlaydi -->
+    <meta name="color-scheme" content="light dark">
+    <!-- Telefon brauzeri yuqori panelining rangi -->
+    <meta name="theme-color" content="#f5f5f7">
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Bu skript sahifa CHIZILISHIDAN OLDIN ishlaydi:
+         1) "js" klassini qo'shadi (animatsiyalar uchun)
+         2) Rejimni tanlaydi: avval saqlangan tanlov, bo'lmasa — qurilma sozlamasi.
+         Shunda sahifa bir lahzaga ham noto'g'ri rangda "yonib" ketmaydi. -->
+    <script>
+      (function () {
+        var d = document.documentElement;
+        d.classList.add('js');
+        var mavzu = null;
+        try { mavzu = localStorage.getItem('mavzu'); } catch (e) {}
+        if (mavzu !== 'light' && mavzu !== 'dark') {
+          mavzu = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        d.setAttribute('data-theme', mavzu);
+      })();
+    </script>
+  </head>
+
+  <body>
+
+    <!-- SVG "sprite": takrorlanadigan ikonkalar bir marta shu yerda chiziladi,
+         keyin <use href="#..."> orqali istalgan joyda qayta ishlatiladi -->
+    <svg class="sprite" aria-hidden="true">
+      <symbol id="i-arrow" viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="8 7 17 7 17 16"/></symbol>
+      <symbol id="i-code" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></symbol>
+    </svg>
+
+    <!-- Klaviatura bilan kiruvchilar uchun: birinchi Tab bosilganda ko'rinadi
+         va menyuni "sakrab o'tib", to'g'ridan-to'g'ri kontentga olib boradi -->
+    <a class="skip-link" href="#asosiy">Kontentga o'tish</a>
+
+    <!-- ===================================================
+         MENYU
+         =================================================== -->
+    <header class="nav">
+      <a href="#" class="logo">
+        <span class="logo-mark">S</span>
+        Shoxrux
+      </a>
+
+      <nav class="nav-links">
+        <a href="#loyihalar">Loyihalar</a>
+        <a href="#men-haqimda">Men haqimda</a>
+        <a href="#yolim">Yo'lim</a>
+        <a href="#boglanish">Bog'lanish</a>
+      </nav>
+
+      <div class="nav-right">
+        <!-- Kunduzgi / tungi rejim tugmasi -->
+        <button class="theme-toggle" type="button" aria-label="Tungi rejimni yoqish">
+          <!-- Oy — kunduzgi rejimda ko'rinadi -->
+          <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          <!-- Quyosh — tungi rejimda ko'rinadi -->
+          <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </button>
+
+        <a href="https://t.me/shoxruh2208" class="btn btn-dark btn-small">Yozish</a>
+
+        <!-- Telefon menyusi tugmasi (faqat kichik ekranda ko'rinadi).
+             aria-expanded — ekran o'quvchi dasturlarga menyu ochiq/yopiqligini aytadi -->
+        <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobil-menyu" aria-label="Menyuni ochish">
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+
+    <!-- ===================================================
+         TELEFON MENYUSI — pastdan chiqadigan panel
+         <dialog> — brauzerning o'zi tayyor "oyna" elementi:
+         Esc bilan yopiladi, fokus ichida qoladi, orqa fon bosilmaydi.
+         =================================================== -->
+    <dialog class="mobile-menu" id="mobil-menyu" aria-label="Menyu">
+      <div class="mm-head">
+        <span class="mm-title">Menyu</span>
+        <button class="mm-close" type="button" aria-label="Menyuni yopish">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <nav class="mm-links" aria-label="Bo'limlar">
+        <a href="#loyihalar"><span>01</span>Loyihalar</a>
+        <a href="#men-haqimda"><span>02</span>Men haqimda</a>
+        <a href="#yolim"><span>03</span>Yo'lim</a>
+        <a href="#boglanish"><span>04</span>Bog'lanish</a>
+      </nav>
+
+      <div class="mm-foot">
+        <a href="https://t.me/shoxruh2208">Telegram</a>
+        <a href="https://www.instagram.com/sh_qodirov1">Instagram</a>
+        <a href="https://github.com/qodiroff2008">GitHub</a>
+      </div>
+    </dialog>
+
+
+    <main class="container" id="asosiy" tabindex="-1">
+
+      <!-- ===================================================
+           1. HERO — kim, nima qiladi, nima qilish mumkin
+           =================================================== -->
+      <section class="hero">
+        <div class="hero-text">
+          <h1>
+            Qodirov Shoxrux
+            <span class="muted">Boshlovchi veb-dasturchi</span>
+          </h1>
+
+          <p class="hero-sub">
+            Jizzax Politexnika instituti talabasi. Dasturlashni o'rganyapman va
+            ingliz tilidagi kinolar uchun Telegram loyihasini yuritaman.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#loyihalar" class="btn btn-dark">Loyihalarim</a>
+            <a href="#boglanish" class="btn btn-light">Bog'lanish</a>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <strong>1 yil</strong>
+              <span>Dasturlashda</span>
+            </div>
+            <div class="stat">
+              <strong>B2</strong>
+              <span>Ingliz tili</span>
+            </div>
+            <div class="stat">
+              <strong>1-kurs</strong>
+              <span>JizPI talabasi</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- <picture> — brauzer o'zi qo'llab-quvvatlaydigan eng ixcham formatni tanlaydi:
+             AVIF (eng kichik) → bo'lmasa WebP.
+             width/height — rasm yuklanguncha joyi oldindan ajratiladi (sahifa "sakramaydi").
+             fetchpriority="high" — bu sahifadagi eng muhim rasm, birinchi yuklansin. -->
+        <div class="hero-photo">
+          <picture>
+            <source srcset="figura.avif" type="image/avif">
+            <img src="figura.webp" alt="Qodirov Shoxrux kostyumda" width="882" height="1200" fetchpriority="high">
+          </picture>
+        </div>
+
+        <a href="https://t.me/englishmovs2208" class="float-card">
+          <span class="fc-label">Hozirgi loyiham</span>
+          <strong>English Movies — Telegram kanal</strong>
+          <span class="fc-text">Ingliz tilidagi filmlar, seriallar va multfilmlar</span>
+          <span class="fc-arrow" aria-hidden="true">
+            <svg aria-hidden="true"><use href="#i-arrow"/></svg>
+          </span>
+        </a>
+      </section>
+
+
+      <!-- ===================================================
+           2. HOZIR — ixcham tasma
+           =================================================== -->
+      <section class="reveal" id="hozir">
+        <div class="section-head">
+          <div>
+            <p class="label">Hozir</p>
+            <h2>Ayni paytda <span class="muted">nima bilan bandman</span></h2>
+          </div>
+          <span class="badge">Yangilandi: noyabr, 2026</span>
+        </div>
+
+        <div class="now-grid">
+          <div class="now-item card">
+            <span class="icon-box"><svg aria-hidden="true"><use href="#i-code"/></svg></span>
+            <span class="now-kind">O'rganyapman</span>
+            <strong>HTML, CSS va JavaScript</strong>
+          </div>
+          <div class="now-item card">
+            <span class="icon-box"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M22 2 11 13"/><path d="M22 2 15 22 11 13 2 9 22 2z"/></svg></span>
+            <span class="now-kind">Loyiha</span>
+            <strong>English Movies kanali</strong>
+          </div>
+          <div class="now-item card">
+            <span class="icon-box"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M2 4h6a4 4 0 0 1 4 4v12a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v12a3 3 0 0 1 3-3h7z"/></svg></span>
+            <span class="now-kind">O'qiyapman</span>
+            <strong>"Andisha va g'urur"</strong>
+          </div>
+          <div class="now-item card">
+            <span class="icon-box"><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+            <span class="now-kind">Kun tartibim</span>
+            <strong>O'qish · Ish · Kechqurun o'z ustimda ishlash</strong>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ===================================================
+           3. LOYIHALAR
+           =================================================== -->
+      <section class="reveal" id="loyihalar">
+        <div class="section-head">
+          <div>
+            <p class="label">Loyihalar</p>
+            <h2>Qilgan ishlarim <span class="muted">va jarayon</span></h2>
+          </div>
+        </div>
+
+        <div class="projects">
+
+          <!-- (a) English Movies -->
+          <article class="project card">
+            <div class="project-top">
+              <span class="status">● Ishlab chiqilmoqda</span>
+              <span class="icon-box"><svg aria-hidden="true" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="3"/><polygon points="10 9 15 12 10 15"/></svg></span>
+            </div>
+
+            <h3>English Movies</h3>
+            <p class="project-desc">
+              Ingliz tilidagi filmlar, seriallar va multfilmlar jamlangan Telegram kanal.
+              Kanalda bo'lmagan filmni so'rab olish ham mumkin.
+            </p>
+
+            <!-- Kanalning o'zidagi asl tavsif -->
+            <blockquote class="original" lang="en">
+              "You can find many English movies, series and cartoons there! Also, you can
+              ask films that are unavailable on this channel."
+            </blockquote>
+
+            <p class="project-why">
+              <strong>Nima uchun:</strong> ingliz tilini o'zim B2 darajagacha o'rgandim —
+              kino esa tilni o'rganishning eng qiziqarli yo'llaridan biri.
+            </p>
+
+            <div class="tags">
+              <span class="tag">Telegram</span>
+              <span class="tag">Bot</span>
+              <span class="tag">Ingliz tili</span>
+            </div>
+
+            <a href="https://t.me/englishmovs2208" class="btn btn-dark project-btn">Kanalni ochish</a>
+          </article>
+
+          <!-- (b) Shu sayt -->
+          <article class="project card">
+            <div class="project-top">
+              <span class="status status-done">● Ishlayapti</span>
+              <span class="icon-box"><svg aria-hidden="true"><use href="#i-code"/></svg></span>
+            </div>
+
+            <h3>Shu sayt</h3>
+            <p class="project-desc">
+              Dasturlashni noldan boshlab yaratgan shaxsiy saytim. Hech qanday tayyor
+              shablonsiz — HTML, CSS va JavaScript'ning o'zi bilan.
+            </p>
+
+            <p class="project-why">
+              <strong>Jarayon:</strong> sayt 8 marta qayta loyihalandi. Har bir versiya
+              yangi narsani o'rgatdi:
+            </p>
+
+            <ol class="versions">
+              <li><span>01</span>Oddiy HTML <em>teglar va tuzilma</em></li>
+              <li><span>02</span>Birinchi dizayn <em>CSS: rang, shrift, soya</em></li>
+              <li><span>03</span>Minimal qora-oq <em>grid va ulkan tipografika</em></li>
+              <li><span>04</span>Shisha uslubi <em>backdrop-filter, ilk JavaScript</em></li>
+              <li><span>05</span>Toza oq <em>"kamroq — ko'proq", bo'sh joy</em></li>
+              <li><span>06</span>Qorong'i va animatsion <em>@keyframes, IntersectionObserver</em></li>
+              <li><span>07</span>Mobil ilova uslubi <em>karusel, moslashuvchan to'r</em></li>
+              <li><span>08</span>Monoxrom (hozirgi) <em>serif + sans, portret kompozitsiyasi</em></li>
+            </ol>
+
+            <div class="tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+
+      <!-- ===================================================
+           4. MEN HAQIMDA + SHE'R
+           =================================================== -->
+      <section class="split panel reveal" id="men-haqimda">
+        <div>
+          <p class="label">Men haqimda</p>
+          <h2>Hikoyam <span class="muted">qisqacha</span></h2>
+          <p class="motto">"Vaqt hammasini ko'rsatadi."<span>— hayotiy shiorim</span></p>
+        </div>
+
+        <div class="prose">
+          <p>
+            Men <strong>Qodirov Shoxrux</strong>man — Jizzax Politexnika institutining
+            Logistika yo'nalishi 1-kurs talabasi.
+          </p>
+          <p>
+            Bir yil oldin onlayn kontentlar orqali dasturlashga qiziqib qoldim va shundan
+            beri uni o'rganib kelmoqdaman. Kunlarim sodda o'tadi: o'qish, ish, kechqurunlari
+            esa o'z ustimda ishlayman. Maqsadim — asosan veb-saytlar yaratadigan dasturchi bo'lish.
+          </p>
+          <p>
+            Meni xursand damlar ilhomlantiradi, yutuqlardan esa quvonaman. Qiyinchilikka
+            duch kelsam, undan chiqish yo'lini izlayman. Ko'pincha kelajagim va karyeram
+            haqida o'ylayman.
+          </p>
+          <div class="chips">
+            <span class="chip">Sabrli</span>
+            <span class="chip">Qat'iyatli</span>
+            <span class="chip">Ijodkor</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- She'r — sahifaning eng yorqin lahzasi -->
+      <figure class="poem reveal">
+        <p class="label label-light">She'riyat</p>
+        <blockquote>
+          <p>
+            Bir kun kelib botadi quyosh,<br>
+            Oy ham ko'rgisi kelar yerning yuzini,<br>
+            Oy ko'rgan narsani ko'rolmas quyosh,<br>
+            Tunda izg'ib yurgan oshiq yuzini...
+          </p>
+        </blockquote>
+        <figcaption>— Qodirov Shoxrux</figcaption>
+      </figure>
+
+      <!-- Qadriyatlar — 4 ta asosiy -->
+      <div class="values reveal">
+        <div class="card mini">
+          <span class="mini-kind">Qadriyatlarim</span>
+          <p>Oila · Do'stlar davrasi · Internet</p>
+        </div>
+        <div class="card mini">
+          <span class="mini-kind">Namunam</span>
+          <p>Ota-onam</p>
+        </div>
+        <div class="card mini">
+          <span class="mini-kind">Meni o'zgartirgan asar</span>
+          <p>O'tkir Hoshimov — "Ikki eshik orasi"</p>
+        </div>
+        <div class="card mini">
+          <span class="mini-kind">Kuchli tomonim / ustida ishlayapman</span>
+          <p>Til bilishim / qunt va muntazamlik</p>
+        </div>
+      </div>
+
+
+      <!-- ===================================================
+           5. YO'LIM — o'tmish → bugun → kelajak + qiziqishlar
+           =================================================== -->
+      <section class="split panel reveal" id="yolim">
+        <div>
+          <p class="label">Yo'lim</p>
+          <h2>O'tmish, bugun <span class="muted">va kelajak</span></h2>
+
+          <div class="side-lists">
+            <div>
+              <p class="label">Sevimli o'yinlar</p>
+              <ol class="list">
+                <li><span>01</span>EA FC 26</li>
+                <li><span>02</span>PES 2017</li>
+                <li><span>03</span>CS 2</li>
+              </ol>
+            </div>
+            <div>
+              <p class="label">Futbol</p>
+              <dl class="facts">
+                <div><dt>Pozitsiyam</dt><dd>Himoyachi</dd></div>
+                <div><dt>Jamoa</dt><dd>Real Madrid</dd></div>
+                <div><dt>Futbolchi</dt><dd>Ronaldo</dd></div>
+              </dl>
+            </div>
+            <div>
+              <p class="label">Ish qurolim</p>
+              <dl class="facts">
+                <div><dt>Noutbuk</dt><dd>Acer, Core i3</dd></div>
+                <div><dt>Muharrir</dt><dd>VS Code</dd></div>
+                <div><dt>Telefon</dt><dd>iPhone</dd></div>
+              </dl>
+            </div>
+          </div>
+        </div>
+
+        <ol class="timeline">
+          <li class="past">
+            <span class="t-when">2025</span>
+            <strong>Dasturlashni boshladim</strong>
+            <span class="t-desc">Onlayn kontentlar orqali qiziqib qoldim</span>
+          </li>
+          <li class="past">
+            <span class="t-when">Yutuq</span>
+            <strong>Ingliz tili — B2 sertifikati</strong>
+            <span class="t-desc">Milliy sertifikat, 63 ball</span>
+          </li>
+          <li class="past">
+            <span class="t-when">2026, yoz</span>
+            <strong>Talaba bo'ldim</strong>
+            <span class="t-desc">Jizzax Politexnika instituti, Logistika yo'nalishi</span>
+          </li>
+          <li class="now">
+            <span class="t-when">2026, noyabr · hozir</span>
+            <strong>Shaxsiy saytimni yaratdim</strong>
+            <span class="t-desc">Va English Movies kanali ustida ishlayapman</span>
+          </li>
+          <li>
+            <span class="t-when">1 yildan so'ng</span>
+            <strong>Professional dasturchi</strong>
+            <span class="t-desc">Asosan veb-saytlar yaratuvchisi</span>
+          </li>
+          <li>
+            <span class="t-when">5 yildan so'ng</span>
+            <strong>Mustaqil inson</strong>
+          </li>
+          <li>
+            <span class="t-when">Orzu loyiha</span>
+            <strong>Ochiq dunyo o'yini</strong>
+            <span class="t-desc">GTA va Call of Duty kabi</span>
+          </li>
+          <li>
+            <span class="t-when">Katta orzu</span>
+            <strong>Jamiyatda o'z o'rniga ega inson bo'lish</strong>
+          </li>
+        </ol>
+      </section>
+
+
+      <!-- ===================================================
+           6. BOG'LANISH
+           =================================================== -->
+      <section class="contact reveal" id="boglanish">
+        <div class="contact-head">
+          <p class="label label-light">Bog'lanish</p>
+          <h2>Savolingiz bormi? <span class="muted-light">Yozing.</span></h2>
+          <p class="contact-sub">
+            Maslahat kerak bo'lsa yoki biror narsani bilmoqchi bo'lsangiz — bemalol murojaat qiling.
+          </p>
+
+          <!-- Email manzilini bir bosishda nusxalash -->
+          <div class="copy-row">
+            <span class="copy-email">shoxruxqodirov2008@gmail.com</span>
+            <button class="copy-btn" type="button" data-copy="shoxruxqodirov2008@gmail.com">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span class="copy-text">Nusxalash</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="contact-grid">
+          <a href="https://t.me/shoxruh2208" class="contact-link">
+            <span><strong>Telegram</strong><small>@shoxruh2208</small></span>
+            <span class="fc-arrow" aria-hidden="true"><svg aria-hidden="true"><use href="#i-arrow"/></svg></span>
+          </a>
+          <a href="https://www.instagram.com/sh_qodirov1" class="contact-link">
+            <span><strong>Instagram</strong><small>@sh_qodirov1</small></span>
+            <span class="fc-arrow" aria-hidden="true"><svg aria-hidden="true"><use href="#i-arrow"/></svg></span>
+          </a>
+          <a href="https://www.youtube.com/@shoxruxqodirov-2208" class="contact-link">
+            <span><strong>YouTube</strong><small>@shoxruxqodirov-2208</small></span>
+            <span class="fc-arrow" aria-hidden="true"><svg aria-hidden="true"><use href="#i-arrow"/></svg></span>
+          </a>
+          <a href="https://github.com/qodiroff2008" class="contact-link">
+            <span><strong>GitHub</strong><small>qodiroff2008</small></span>
+            <span class="fc-arrow" aria-hidden="true"><svg aria-hidden="true"><use href="#i-arrow"/></svg></span>
+          </a>
+          <a href="mailto:shoxruxqodirov2008@gmail.com" class="contact-link">
+            <span><strong>Email</strong><small>shoxruxqodirov2008@gmail.com</small></span>
+            <span class="fc-arrow" aria-hidden="true"><svg aria-hidden="true"><use href="#i-arrow"/></svg></span>
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+
+    <footer class="footer">
+      <span>© 2026 Qodirov Shoxrux</span>
+      <span>Jizzax, O'zbekiston</span>
+    </footer>
+
+
+    <!-- Tepaga qaytish tugmasi (pastga aylantirganda paydo bo'ladi) -->
+    <a href="#" class="to-top" aria-label="Sahifa boshiga qaytish">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+    </a>
+
+    <!-- Kichik xabarcha ("Nusxalandi ✓").
+         aria-live — ekran o'quvchi dasturlar bu yerdagi o'zgarishni ovoz chiqarib o'qiydi -->
+    <div class="toast" role="status" aria-live="polite"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

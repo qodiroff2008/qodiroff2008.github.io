@@ -1,0 +1,5 @@
+# Barcha qidiruv tizimlariga butun saytni ko'rishga ruxsat
+User-agent: *
+Allow: /
+
+Sitemap: https://qodiroff2008.github.io/sitemap.xml

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sahifa topilmadi — Qodirov Shoxrux</title>
+    <!-- Qidiruv tizimlari bu sahifani ro'yxatga olmasin -->
+    <meta name="robots" content="noindex">
+    <meta name="color-scheme" content="light dark">
+
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- "/" bilan boshlangan manzil — sayt ildizidan. 404 sahifa istalgan
+         chuqurlikdagi manzilda ochilishi mumkin, shuning uchun bu muhim. -->
+    <link rel="stylesheet" href="/style.css">
+
+    <!-- Asosiy sahifadagi bilan bir xil: saqlangan rejim yoki qurilma sozlamasi -->
+    <script>
+      (function () {
+        var d = document.documentElement;
+        var mavzu = null;
+        try { mavzu = localStorage.getItem('mavzu'); } catch (e) {}
+        if (mavzu !== 'light' && mavzu !== 'dark') {
+          mavzu = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        d.setAttribute('data-theme', mavzu);
+      })();
+    </script>
+  </head>
+
+  <body>
+    <header class="nav">
+      <a href="/" class="logo">
+        <span class="logo-mark">S</span>
+        Shoxrux
+      </a>
+    </header>
+
+    <main class="notfound">
+      <p class="label">Xato 404</p>
+      <h1>Bu sahifa <span class="muted">topilmadi</span></h1>
+      <p class="notfound-text">
+        Balki havola eskirgan yoki manzilda xatolik bor.
+        Bosh sahifadan kerakli bo'limni topishingiz mumkin.
+      </p>
+      <a href="/" class="btn btn-dark">Bosh sahifaga qaytish</a>
+    </main>
+  </body>
+</html>

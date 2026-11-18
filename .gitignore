@@ -1,0 +1,15 @@
+# Git bu fayllarni KUZATMAYDI va GitHub'ga YUKLAMAYDI
+
+# Operatsion tizim qoldiqlari
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Muharrir sozlamalari
+.vscode/
+.idea/
+
+# Shaxsiy yoki vaqtinchalik fayllar (ehtiyot uchun)
+anketa*.md
+*.tmp
+*.log
