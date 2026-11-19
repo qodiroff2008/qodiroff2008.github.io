@@ -1192,7 +1192,7 @@ section {
 
 .contact-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: var(--s-3);
 }
 
@@ -1842,3 +1842,53 @@ html:has(.mobile-menu[open]) {
   height: 0;
   overflow: hidden;
 }
+
+
+/* ---------- Bog'lanish: platforma ikonkalari ---------- */
+.cl-main {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  min-width: 0;
+}
+
+.cl-text {
+  min-width: 0;                  /* uzun nik "..." bilan qisqarishi uchun */
+}
+
+.cl-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r-sm);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--inv-border);
+  color: var(--inv-text);
+  transition: background var(--orta), border-color var(--orta), transform var(--orta) var(--silliq);
+}
+
+.cl-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Sichqoncha kelganda ikonka o'z platformasi rangiga kiradi */
+.contact-link:hover .cl-icon {
+  transform: scale(1.06);
+  border-color: transparent;
+}
+
+.contact-link:hover .cl-telegram  { background: #229ed9; }
+.contact-link:hover .cl-instagram { background: linear-gradient(45deg, #f9a825, #e1306c 50%, #833ab4); }
+.contact-link:hover .cl-youtube   { background: #ff0033; }
+.contact-link:hover .cl-github    { background: #6e40c9; }
+.contact-link:hover .cl-email     { background: var(--accent); }
+
+/* Klaviatura bilan tanlanganda ham xuddi shunday */
+.contact-link:focus-visible .cl-telegram  { background: #229ed9; }
+.contact-link:focus-visible .cl-instagram { background: linear-gradient(45deg, #f9a825, #e1306c 50%, #833ab4); }
+.contact-link:focus-visible .cl-youtube   { background: #ff0033; }
+.contact-link:focus-visible .cl-github    { background: #6e40c9; }
+.contact-link:focus-visible .cl-email     { background: var(--accent); }
