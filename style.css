@@ -2020,40 +2020,6 @@ html:has(.mobile-menu[open]) {
   background: currentColor;
 }
 
-/* ---------- Surat muallifi yozuvi ---------- */
-.photo-credit {
-  position: absolute;
-  right: var(--s-5);
-  bottom: var(--s-4);
-  font-size: var(--t-xs);
-  color: rgba(238, 229, 210, 0.5);
-  transition: color var(--tez);
-}
-
-.photo-credit:hover {
-  color: rgba(238, 229, 210, 0.9);
-}
-
-/* ---------- Pero — she'r ostida yotadi ---------- */
-.poem-quill {
-  display: block;
-  width: min(360px, 80%);
-  margin-top: var(--s-5);
-}
-
-.poem-quill img {
-  display: block;
-  width: 100%;
-  height: auto;
-  transform: rotate(4deg);
-  transform-origin: left center;
-  /* Rangini xira muhitga moslaymiz + stolga tushgan soya */
-  filter:
-    saturate(0.85)
-    brightness(0.92)
-    drop-shadow(10px 16px 12px rgba(0, 0, 0, 0.55));
-}
-
 /* ---------- Planshet va telefon: surat tepada, she'r pastda ---------- */
 @media (max-width: 980px) {
   .poem {
@@ -2077,11 +2043,6 @@ html:has(.mobile-menu[open]) {
 
   .poem {
     padding: var(--s-8) var(--s-7);
-  }
-
-  .photo-credit {
-    top: var(--s-4);
-    bottom: auto;
   }
 }
 
@@ -2116,11 +2077,241 @@ html:has(.mobile-menu[open]) {
 
 /* She'riyat: kichik ekranlarda pero va shrift */
 @media (max-width: 600px) {
-  .poem-quill {
-    width: min(260px, 85%);
-  }
-
   .poem blockquote p {
     font-size: 27px;
   }
+}
+
+
+/* ---------- She'riyat: planshet va telefonda surat — tepadagi banner ----------
+   Pero suratning pastki qismida; matn ostida qolib ketmasligi uchun
+   surat yuqorida alohida ko'rsatiladi, she'r esa uning ostida */
+@media (max-width: 980px) {
+  .poem {
+    display: block;
+    min-height: 0;
+    padding: 400px var(--s-7) var(--s-8);
+  }
+
+  .poem-bg {
+    bottom: auto;
+    height: 460px;
+  }
+
+  .poem-bg img {
+    object-position: 68% 75%;
+  }
+
+  .poem::before {
+    background: linear-gradient(180deg,
+      rgba(12, 10, 8, 0.1) 0,
+      rgba(12, 10, 8, 0.2) 280px,
+      rgba(12, 10, 8, 0.8) 390px,
+      #0c0a08 460px);
+  }
+}
+
+@media (max-width: 600px) {
+  .poem {
+    padding: 340px var(--s-5) var(--s-7);
+  }
+
+  .poem-bg {
+    height: 400px;
+  }
+
+  .poem::before {
+    background: linear-gradient(180deg,
+      rgba(12, 10, 8, 0.1) 0,
+      rgba(12, 10, 8, 0.2) 240px,
+      rgba(12, 10, 8, 0.8) 335px,
+      #0c0a08 400px);
+  }
+}
+
+
+/* ============================================================
+   18. GLASSMORPHISM — shisha effekti
+   Tuzilma o'zgarmaydi: faqat bo'lim, kartochka va ikonkalarning
+   "materiali" xira shishaga aylanadi.
+   Shisha faqat ORTIDA nimadir bo'lsa ko'rinadi — shuning uchun
+   sahifa ortiga yumshoq rangli nurlar va nozik yarqiroq yoy qo'yilgan.
+   ============================================================ */
+:root {
+  --glass: linear-gradient(135deg, rgba(255, 255, 255, 0.66), rgba(255, 255, 255, 0.34));
+  --glass-strong: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5));
+  --glass-border: rgba(255, 255, 255, 0.75);
+  --glass-edge: inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+  --glass-blur: blur(22px) saturate(160%);
+  --glass-dark: linear-gradient(150deg, rgba(36, 36, 42, 0.82), rgba(14, 14, 18, 0.9));
+  --orb-1: rgba(255, 140, 70, 0.32);     /* iliq to'q sariq nur */
+  --orb-2: rgba(80, 150, 255, 0.26);     /* sovuq ko'k nur */
+  --orb-3: rgba(150, 110, 255, 0.18);    /* binafsha nur */
+  --arc: rgba(120, 140, 170, 0.18);      /* yarqiroq yoy */
+}
+
+:root[data-theme="dark"] {
+  --glass: linear-gradient(135deg, rgba(255, 255, 255, 0.085), rgba(255, 255, 255, 0.025));
+  --glass-strong: linear-gradient(135deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.05));
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-edge: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  --glass-dark: linear-gradient(150deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.02));
+  --orb-1: rgba(255, 120, 40, 0.16);
+  --orb-2: rgba(40, 150, 170, 0.14);
+  --orb-3: rgba(110, 90, 220, 0.1);
+  --arc: rgba(150, 190, 200, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --glass: linear-gradient(135deg, rgba(255, 255, 255, 0.085), rgba(255, 255, 255, 0.025));
+    --glass-strong: linear-gradient(135deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.05));
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --glass-edge: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    --glass-dark: linear-gradient(150deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.02));
+    --orb-1: rgba(255, 120, 40, 0.16);
+    --orb-2: rgba(40, 150, 170, 0.14);
+    --orb-3: rgba(110, 90, 220, 0.1);
+    --arc: rgba(150, 190, 200, 0.1);
+  }
+}
+
+/* ---------- Sahifa ortidagi nurlar (shisha shularni xira qilib ko'rsatadi) ---------- */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    /* katta, nozik yarqiroq yoylar — namunadagi shisha egri chiziqlardek */
+    radial-gradient(circle at 105% 40%, transparent 41%, var(--arc) 43%, transparent 47%),
+    radial-gradient(circle at -10% 95%, transparent 38%, var(--arc) 40%, transparent 44%),
+    /* rangli nurlar */
+    radial-gradient(38% 32% at 18% 22%, var(--orb-1), transparent 70%),
+    radial-gradient(42% 38% at 86% 30%, var(--orb-2), transparent 70%),
+    radial-gradient(40% 40% at 55% 92%, var(--orb-3), transparent 70%);
+}
+
+/* ---------- Shisha material: kartochkalar, bo'limlar, kichik elementlar ---------- */
+.card,
+.panel,
+.hero,
+.badge,
+.chip,
+.tag,
+.icon-box,
+.btn-light,
+.theme-toggle,
+.menu-btn,
+.mm-close,
+.mm-foot a {
+  background: var(--glass);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-edge);
+}
+
+/* Katta bloklar: ostida kichik, yig'ilgan soya (qo'shni bo'limlarga tushmaydi) */
+.hero,
+.panel {
+  box-shadow: var(--glass-edge), 0 24px 48px -28px rgba(0, 0, 0, 0.25);
+}
+
+/* Kartochka ustiga kelganda — shisha yorishadi */
+.card:hover,
+[data-theme="dark"] .card:hover {
+  background: var(--glass-strong);
+  border-color: var(--glass-border);
+  box-shadow: var(--glass-edge), 0 18px 30px -20px rgba(0, 0, 0, 0.3);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .card:hover {
+    background: var(--glass-strong);
+  }
+}
+
+/* Ikonka qutisi hover'da urg'u rangiga kirishi saqlanadi */
+.card:hover .icon-box {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+/* Yuqori menyu (pastga aylantirilganda) — shisha */
+.nav.scrolled {
+  background: var(--glass);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: 0 1px 0 var(--glass-border);
+}
+
+/* Telefon menyusi paneli — shisha */
+.mobile-menu {
+  background: var(--glass-strong), var(--bg);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border-top: 1px solid var(--glass-border);
+}
+
+/* ---------- Qorong'i shisha: "Bog'lanish" bo'limi ---------- */
+.contact {
+  background: var(--glass-dark);
+  -webkit-backdrop-filter: blur(26px) saturate(150%);
+  backdrop-filter: blur(26px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.contact-link,
+.copy-row,
+.cl-icon {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03));
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.contact-link:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.06));
+}
+
+/* Platforma ranglari hover paytida saqlanadi */
+.contact-link:hover .cl-telegram,  .contact-link:focus-visible .cl-telegram  { background: #229ed9; }
+.contact-link:hover .cl-instagram, .contact-link:focus-visible .cl-instagram { background: linear-gradient(45deg, #f9a825, #e1306c 50%, #833ab4); }
+.contact-link:hover .cl-youtube,   .contact-link:focus-visible .cl-youtube   { background: #ff0033; }
+.contact-link:hover .cl-github,    .contact-link:focus-visible .cl-github    { background: #6e40c9; }
+.contact-link:hover .cl-email,     .contact-link:focus-visible .cl-email     { background: var(--accent); }
+
+/* Tepaga qaytish — qorong'i shisha doira */
+.to-top {
+  background: linear-gradient(135deg, rgba(40, 40, 46, 0.75), rgba(14, 14, 18, 0.85));
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+}
+
+/* Shisha effektini bilmaydigan eski brauzerlar uchun — oddiy, o'qiladigan fon */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .card, .panel, .hero, .badge, .chip, .tag, .icon-box, .btn-light,
+  .theme-toggle, .menu-btn, .mm-close, .mm-foot a {
+    background: var(--surface);
+  }
+
+  .contact {
+    background: linear-gradient(160deg, var(--inv-bg-1), var(--inv-bg-2));
+  }
+}
+
+/* Tezlik uchun: shisha kartochka ICHIDAGI mayda elementlar qayta xiralashtirmaydi
+   (ortidagi kartochka allaqachon xira — ikki qavat blur ortiqcha yuk) */
+.card .icon-box,
+.card .tag,
+.chip,
+.mm-foot a {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
