@@ -1895,261 +1895,210 @@ html:has(.mobile-menu[open]) {
 
 
 /* ============================================================
-   17. SHE'RIYAT — yozuv stoli (qog'oz, pero, siyohdon)
+   17. SHE'RIYAT — "dark academia" uslubi
+   Haqiqiy fotosurat + uning ustida she'r. Kino donadorligi va vinyetka.
    ============================================================ */
-
-/* Qo'lyozma shrift — faqat imzo uchun */
-@font-face {
-  font-family: 'Caveat';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url('fonts/caveat-latin.woff2') format('woff2');
-}
-
 .poem {
-  --siyoh: #1f2a44;              /* ko'k-qora siyoh rangi */
-  --qogoz: #f3ead8;              /* eski qog'oz rangi */
+  --qogoz-rang: #eee5d2;         /* she'r matni — eski qog'oz rangi */
+  --oltin: #c9b48a;              /* xira oltin — yorliq uchun */
+  position: relative;
+  isolation: isolate;            /* qatlamlar (z-index) faqat shu blok ichida ishlasin */
   overflow: hidden;
-  /* Qorong'i stol + yuqoridan tushayotgan iliq "sham" nuri */
+  display: flex;
+  align-items: center;
+  min-height: 600px;
+  padding: var(--s-9) var(--s-8);
+  color: var(--qogoz-rang);
+  background: #0d0b09;
+  border: 1px solid rgba(255, 235, 200, 0.08);
+}
+
+/* ---------- Fon surati ---------- */
+.poem-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+}
+
+.poem-bg img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 62% 50%;
+  /* Bo'lim ko'ringanda surat juda sekin "yaqinlashadi" — kinodagidek */
+  transform: scale(1.08);
+  transition: transform 9s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.poem.visible .poem-bg img {
+  transform: scale(1);
+}
+
+/* ---------- Qorong'ilashtiruvchi qatlam: chapda matn o'qilishi uchun ---------- */
+.poem::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
   background:
-    radial-gradient(ellipse at 62% 18%, rgba(255, 196, 120, 0.13), transparent 55%),
-    linear-gradient(160deg, #23211f, #121110);
-  border-color: rgba(255, 220, 170, 0.1);
+    linear-gradient(90deg,
+      rgba(12, 10, 8, 0.94) 0%,
+      rgba(12, 10, 8, 0.82) 32%,
+      rgba(12, 10, 8, 0.25) 66%,
+      rgba(12, 10, 8, 0.4) 100%),
+    /* chetlar qorong'iroq — vinyetka */
+    radial-gradient(ellipse at 60% 50%, transparent 45%, rgba(0, 0, 0, 0.55) 100%);
 }
 
-/* Stol: chapda qog'oz, o'ngda siyohdon */
-.desk {
-  --paper-w: min(720px, 76%);
-  position: relative;
-  display: grid;
-  grid-template-columns: var(--paper-w) 1fr;
-  align-items: end;
-  margin-top: var(--s-5);
+/* ---------- Kino donadorligi (film grain) ---------- */
+.poem::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.22;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
 }
 
-/* ---------- Qog'oz varag'i ---------- */
-.paper {
-  position: relative;
-  padding: var(--s-8) var(--s-8) var(--s-7);
-  border-radius: 4px;
-  color: var(--siyoh);
-  background-color: var(--qogoz);
-  background-image:
-    /* buklangan joy (o'rtadagi ingichka chiziq) */
-    linear-gradient(180deg, transparent 49.6%, rgba(90, 60, 20, 0.07) 50%, rgba(255, 255, 255, 0.45) 50.4%, transparent 51%),
-    /* chetlari biroz sarg'aygan */
-    radial-gradient(ellipse at center, transparent 55%, rgba(150, 110, 50, 0.22) 100%),
-    /* qog'oz donadorligi (kod bilan yaratilgan "shovqin") */
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.33 0 0 0 0 0.18 0 0 0 0.11 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  box-shadow:
-    0 30px 60px rgba(0, 0, 0, 0.5),
-    0 2px 4px rgba(0, 0, 0, 0.25);
-  transform: rotate(-1.2deg);    /* stolga biroz qiyshiq qo'yilgan */
+/* ---------- Matn ---------- */
+.poem-content {
+  max-width: 560px;
 }
 
-/* She'r matni — siyoh bilan, chiziqli qog'ozda */
-.poem .paper blockquote {
-  margin: 0;
+.poem-label {
+  color: var(--oltin);
 }
 
-.poem .paper blockquote p {
+.poem blockquote {
+  margin: var(--s-5) 0 0;
+}
+
+.poem blockquote p {
   margin: 0;
   font-family: var(--serif);
   font-style: italic;
   font-weight: 500;
-  font-size: clamp(var(--t-xl), 2.5vw, var(--t-3xl));
-  line-height: 1.7;
-  color: var(--siyoh);
-  /* Har bir qator ostida ingichka chiziq — daftardagidek */
-  background-image: repeating-linear-gradient(
-    to bottom,
-    transparent 0,
-    transparent calc(1.7em - 1px),
-    rgba(70, 90, 140, 0.22) calc(1.7em - 1px),
-    rgba(70, 90, 140, 0.22) 1.7em
-  );
+  font-size: clamp(var(--t-2xl), 2.9vw, var(--t-4xl));
+  line-height: 1.55;
+  color: var(--qogoz-rang);
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45);
 }
 
 .poem .line {
   display: block;
 }
 
-/* ---------- Imzo ---------- */
-.poem .signature {
-  display: inline-flex;
+/* Muallif: ingichka chiziq + kichik bosh harflar */
+.poem .poem-author {
+  display: flex;
   align-items: center;
-  gap: var(--s-2);
-  margin-top: var(--s-5);
-  font-family: 'Caveat', cursive;
-  font-size: var(--t-3xl);
+  gap: var(--s-3);
+  margin-top: var(--s-6);
+  font-family: var(--sans);
+  font-size: var(--t-xs);
   font-weight: 500;
-  color: var(--siyoh);
-  transform: rotate(-3deg);
-  transform-origin: left center;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(238, 229, 210, 0.65);
 }
 
-.ink-blot {
-  width: 40px;
-  height: 30px;
-  fill: var(--siyoh);
-  stroke: none;
-  opacity: 0.85;
+.poem .poem-author::before {
+  content: "";
+  width: var(--s-6);
+  height: 1px;
+  background: currentColor;
 }
 
-/* ---------- Pero ---------- */
-.quill {
+/* ---------- Surat muallifi yozuvi ---------- */
+.photo-credit {
   position: absolute;
-  z-index: 2;
-  top: -86px;
-  left: calc(var(--paper-w) - 92px);
-  width: 112px;
-  height: 336px;
-  transform: rotate(34deg);
-  transform-origin: 50% 90%;
-  filter: drop-shadow(-12px 20px 14px rgba(0, 0, 0, 0.45));
-  pointer-events: none;
+  right: var(--s-5);
+  bottom: var(--s-4);
+  font-size: var(--t-xs);
+  color: rgba(238, 229, 210, 0.5);
+  transition: color var(--tez);
 }
 
-.quill-vane {
-  stroke: rgba(120, 100, 70, 0.55);
-  stroke-width: 1;
+.photo-credit:hover {
+  color: rgba(238, 229, 210, 0.9);
 }
 
-.quill-barbs path {
-  fill: none;
-  stroke: #a8977a;
-  stroke-width: 1;
-  opacity: 0.75;
-}
-
-.quill-split {
-  fill: none;
-  stroke: #6d6151;
-  stroke-width: 1.6;
-}
-
-.quill-shaft {
-  fill: none;
-  stroke: #9b8a6d;
-  stroke-width: 2.6;
-  stroke-linecap: round;
-}
-
-.quill-nib {
-  fill: var(--siyoh);
-  stroke: none;
-}
-
-/* ---------- Siyohdon ---------- */
-.inkwell {
-  justify-self: center;
-  width: 128px;
-  height: 119px;
-  margin-bottom: calc(-1 * var(--s-2));
-  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.5));
-}
-
-.iw-shadow { fill: rgba(0, 0, 0, 0.45); stroke: none; }
-.iw-body   { fill: rgba(44, 52, 76, 0.9); stroke: rgba(255, 255, 255, 0.14); stroke-width: 1.5; }
-.iw-ink    { fill: #11182c; stroke: none; }
-.iw-neck   { fill: #262d40; stroke: rgba(255, 255, 255, 0.12); }
-.iw-rim    { fill: #b08d57; stroke: none; }
-.iw-shine  { fill: none; stroke: rgba(255, 255, 255, 0.35); stroke-width: 3; stroke-linecap: round; }
-
-/* Tungi rejimda qog'oz ko'zni qamashtirmasin */
-[data-theme="dark"] .paper {
-  filter: brightness(0.93);
-}
-
-/* ---------- "Yozilish" animatsiyasi ----------
-   Bo'lim ekranga kirganda (script.js "visible" qo'shadi) misralar
-   chapdan o'ngga birin-ketin ochiladi, pero esa "yozayotgandek" qimirlaydi */
-.js .poem .line {
-  clip-path: inset(-0.3em 100% -0.4em -0.2em);
-}
-
-.js .poem.visible .line {
-  animation: yozish 1.05s cubic-bezier(0.45, 0, 0.25, 1) forwards;
-}
-
-.js .poem.visible .line:nth-child(1) { animation-delay: 0.5s; }
-.js .poem.visible .line:nth-child(2) { animation-delay: 1.55s; }
-.js .poem.visible .line:nth-child(3) { animation-delay: 2.6s; }
-.js .poem.visible .line:nth-child(4) { animation-delay: 3.65s; }
-
-@keyframes yozish {
-  to { clip-path: inset(-0.3em -0.2em -0.4em -0.2em); }
-}
-
-.js .poem .signature {
+/* ---------- Misralar siyoh singgandek asta paydo bo'ladi ---------- */
+.js .poem .line,
+.js .poem .poem-author {
   opacity: 0;
+  filter: blur(6px);
+  transform: translateY(8px);
+  transition:
+    opacity 1.3s ease,
+    filter 1.3s ease,
+    transform 1.3s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-.js .poem.visible .signature {
-  animation: imzo 0.9s ease 4.75s forwards;
+.js .poem.visible .line,
+.js .poem.visible .poem-author {
+  opacity: 1;
+  filter: none;
+  transform: none;
 }
 
-@keyframes imzo {
-  from { opacity: 0; transform: rotate(-3deg) translateX(-8px); }
-  to   { opacity: 1; transform: rotate(-3deg); }
-}
+.js .poem.visible .line:nth-child(1) { transition-delay: 0.4s; }
+.js .poem.visible .line:nth-child(2) { transition-delay: 0.85s; }
+.js .poem.visible .line:nth-child(3) { transition-delay: 1.3s; }
+.js .poem.visible .line:nth-child(4) { transition-delay: 1.75s; }
+.js .poem.visible .poem-author       { transition-delay: 2.4s; }
 
-.js .poem.visible .quill {
-  animation: pero-yozadi 4.2s ease-in-out 0.5s both;
-}
-
-@keyframes pero-yozadi {
-  0%, 100% { transform: rotate(34deg); }
-  10%  { transform: rotate(31deg) translate(-4px, 3px); }
-  22%  { transform: rotate(36deg) translate(2px, -2px); }
-  35%  { transform: rotate(31deg) translate(-4px, 4px); }
-  48%  { transform: rotate(36deg) translate(2px, -1px); }
-  60%  { transform: rotate(31deg) translate(-4px, 4px); }
-  73%  { transform: rotate(36deg) translate(2px, -2px); }
-  86%  { transform: rotate(32deg) translate(-3px, 3px); }
-}
-
-/* Animatsiya o'chirilgan bo'lsa — hammasi darhol ko'rinadi */
 @media (prefers-reduced-motion: reduce) {
-  .js .poem .line { clip-path: none; }
-  .js .poem .signature { opacity: 1; }
+  .js .poem .line,
+  .js .poem .poem-author {
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+
+  .poem-bg img {
+    transform: none;
+  }
 }
 
-/* ---------- Kichik ekranlarda ---------- */
+/* ---------- Planshet va telefon: surat tepada, she'r pastda ---------- */
 @media (max-width: 980px) {
-  .desk {
-    --paper-w: 100%;
-    grid-template-columns: 1fr;
+  .poem {
+    align-items: flex-end;
+    min-height: 680px;
   }
 
-  .quill {
-    top: -70px;
-    left: auto;
-    right: -8px;
-    width: 84px;
-    height: 252px;
+  .poem-bg img {
+    object-position: 72% 30%;
   }
 
-  .inkwell {
-    display: none;
+  .poem::before {
+    background:
+      linear-gradient(180deg,
+        rgba(12, 10, 8, 0.2) 0%,
+        rgba(12, 10, 8, 0.5) 35%,
+        rgba(12, 10, 8, 0.92) 68%,
+        rgba(12, 10, 8, 0.96) 100%),
+      radial-gradient(ellipse at 50% 30%, transparent 45%, rgba(0, 0, 0, 0.5) 100%);
+  }
+
+  .poem {
+    padding: var(--s-8) var(--s-7);
+  }
+
+  .photo-credit {
+    top: var(--s-4);
+    bottom: auto;
   }
 }
 
 @media (max-width: 600px) {
-  .paper {
-    padding: var(--s-7) var(--s-5) var(--s-6);
-    transform: rotate(-0.6deg);
-  }
-
-  .quill {
-    top: -58px;
-    right: -14px;
-    width: 64px;
-    height: 192px;
-  }
-
-  .poem .signature {
-    font-size: var(--t-2xl);
+  .poem {
+    min-height: 620px;
+    padding: var(--s-7) var(--s-5);
+    border-radius: var(--r-md);
   }
 }
