@@ -392,7 +392,7 @@
       <!-- ===================================================
            SHE'R — "dark academia": haqiqiy fotosurat ustida she'r
            =================================================== -->
-      <figure class="poem reveal" aria-labelledby="poem-label">
+      <figure class="poem" aria-labelledby="poem-label">
         <!-- Fon surati. alt="" — sof bezak, ma'nosi she'rning o'zida.
              srcset/sizes — brauzer ekran o'lchamiga mos faylni o'zi tanlaydi.
              loading="lazy" — bo'limga yaqinlashgandagina yuklanadi. -->
@@ -407,9 +407,9 @@
         </picture>
 
         <div class="poem-content">
-          <p class="label poem-label" id="poem-label">She'riyat</p>
+          <h3 class="poem-title" id="poem-label">She'riyat</h3>
           <blockquote>
-            <!-- Har bir misra alohida — ular birin-ketin paydo bo'ladi -->
+            <!-- Har bir misra alohida qatorda -->
             <p>
               <span class="line">Bir kun kelib botadi quyosh,</span>
               <span class="line">Oy ham ko'rgisi kelar yerning yuzini,</span>
@@ -417,6 +417,13 @@
               <span class="line">Tunda izg'ib yurgan oshiq yuzini...</span>
             </p>
           </blockquote>
+
+          <!-- Pero — she'r ostida, uni hozirgina yozib qo'ygandek yotadi -->
+          <picture class="poem-quill">
+            <source srcset="pero.avif" type="image/avif">
+            <img src="pero.webp" alt="" width="1296" height="401" loading="lazy" decoding="async">
+          </picture>
+
           <figcaption class="poem-author">Qodirov Shoxrux</figcaption>
         </div>
 
@@ -431,7 +438,7 @@
           <p>Oila · Do'stlar davrasi · Internet</p>
         </div>
         <div class="card mini">
-          <span class="mini-kind">Namunam</span>
+          <span class="mini-kind">Men uchun namuna bo'lgan insonlar</span>
           <p>Ota-onam</p>
         </div>
         <div class="card mini">
@@ -439,8 +446,10 @@
           <p>O'tkir Hoshimov — "Ikki eshik orasi"</p>
         </div>
         <div class="card mini">
-          <span class="mini-kind">Kuchli tomonim / ustida ishlayapman</span>
-          <p>Til bilishim / qunt va muntazamlik</p>
+          <span class="mini-kind">Kuchli tomonim</span>
+          <p>Til bilishim</p>
+          <span class="mini-kind mini-kind-2">Ustida ishlayapman</span>
+          <p>Qunt va muntazamlik</p>
         </div>
       </div>
 

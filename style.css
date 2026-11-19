@@ -128,7 +128,7 @@
   --ok-bg: #e8f6ee;
   --ok-text: #1c7a45;
 
-  --shadow: 0 18px 40px rgba(0, 0, 0, 0.07);
+  --shadow: 0 16px 32px -14px rgba(0, 0, 0, 0.18);
   --shadow-btn: 0 8px 20px rgba(0, 0, 0, 0.18);
   --photo-filter: none;            /* rasm allaqachon qora-oq qilib tayyorlangan */
 }
@@ -170,7 +170,7 @@
   --ok-bg: rgba(60, 200, 120, 0.14);
   --ok-text: #7ee2a8;
 
-  --shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  --shadow: 0 0 0 1px rgba(255, 255, 255, 0.06);
   --shadow-btn: 0 8px 20px rgba(0, 0, 0, 0.4);
   --photo-filter: brightness(0.95);
 }
@@ -202,7 +202,7 @@
     --warn-text: #ffc078;
     --ok-bg: rgba(60, 200, 120, 0.14);
     --ok-text: #7ee2a8;
-    --shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+    --shadow: 0 0 0 1px rgba(255, 255, 255, 0.06);
     --shadow-btn: 0 8px 20px rgba(0, 0, 0, 0.4);
     --photo-filter: brightness(0.95);
   }
@@ -1926,13 +1926,6 @@ html:has(.mobile-menu[open]) {
   height: 100%;
   object-fit: cover;
   object-position: 62% 50%;
-  /* Bo'lim ko'ringanda surat juda sekin "yaqinlashadi" — kinodagidek */
-  transform: scale(1.08);
-  transition: transform 9s cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-
-.poem.visible .poem-bg img {
-  transform: scale(1);
 }
 
 /* ---------- Qorong'ilashtiruvchi qatlam: chapda matn o'qilishi uchun ---------- */
@@ -1968,7 +1961,22 @@ html:has(.mobile-menu[open]) {
   max-width: 560px;
 }
 
-.poem-label {
+/* Kalligrafik shrift (copperplate uslubi) — sarlavha va she'r uchun */
+@font-face {
+  font-family: 'Pinyon Script';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/pinyon-script-latin.woff2') format('woff2');
+}
+
+.poem-title {
+  margin: 0;
+  font-family: 'Pinyon Script', var(--serif);
+  font-weight: 400;
+  font-size: clamp(var(--t-5xl), 6vw, 80px);
+  line-height: 1.1;
+  letter-spacing: 0;
   color: var(--oltin);
 }
 
@@ -1978,11 +1986,11 @@ html:has(.mobile-menu[open]) {
 
 .poem blockquote p {
   margin: 0;
-  font-family: var(--serif);
-  font-style: italic;
-  font-weight: 500;
-  font-size: clamp(var(--t-2xl), 2.9vw, var(--t-4xl));
-  line-height: 1.55;
+  font-family: 'Pinyon Script', var(--serif);
+  font-style: normal;
+  font-weight: 400;
+  font-size: clamp(28px, 3.4vw, 44px);
+  line-height: 1.45;
   color: var(--qogoz-rang);
   text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45);
 }
@@ -2026,42 +2034,24 @@ html:has(.mobile-menu[open]) {
   color: rgba(238, 229, 210, 0.9);
 }
 
-/* ---------- Misralar siyoh singgandek asta paydo bo'ladi ---------- */
-.js .poem .line,
-.js .poem .poem-author {
-  opacity: 0;
-  filter: blur(6px);
-  transform: translateY(8px);
-  transition:
-    opacity 1.3s ease,
-    filter 1.3s ease,
-    transform 1.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+/* ---------- Pero — she'r ostida yotadi ---------- */
+.poem-quill {
+  display: block;
+  width: min(360px, 80%);
+  margin-top: var(--s-5);
 }
 
-.js .poem.visible .line,
-.js .poem.visible .poem-author {
-  opacity: 1;
-  filter: none;
-  transform: none;
-}
-
-.js .poem.visible .line:nth-child(1) { transition-delay: 0.4s; }
-.js .poem.visible .line:nth-child(2) { transition-delay: 0.85s; }
-.js .poem.visible .line:nth-child(3) { transition-delay: 1.3s; }
-.js .poem.visible .line:nth-child(4) { transition-delay: 1.75s; }
-.js .poem.visible .poem-author       { transition-delay: 2.4s; }
-
-@media (prefers-reduced-motion: reduce) {
-  .js .poem .line,
-  .js .poem .poem-author {
-    opacity: 1;
-    filter: none;
-    transform: none;
-  }
-
-  .poem-bg img {
-    transform: none;
-  }
+.poem-quill img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform: rotate(4deg);
+  transform-origin: left center;
+  /* Rangini xira muhitga moslaymiz + stolga tushgan soya */
+  filter:
+    saturate(0.85)
+    brightness(0.92)
+    drop-shadow(10px 16px 12px rgba(0, 0, 0, 0.55));
 }
 
 /* ---------- Planshet va telefon: surat tepada, she'r pastda ---------- */
@@ -2100,5 +2090,37 @@ html:has(.mobile-menu[open]) {
     min-height: 620px;
     padding: var(--s-7) var(--s-5);
     border-radius: var(--r-md);
+  }
+}
+
+
+/* ---------- Kartochkalar: tungi rejimda soya o'rniga yorug'roq fon ----------
+   Qorong'i fonda katta qora soya qo'shni bo'limlarni "bosib" qolardi */
+[data-theme="dark"] .card:hover {
+  background: #1f1f25;
+  border-color: var(--border-strong);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .card:hover {
+    background: #1f1f25;
+    border-color: var(--border-strong);
+  }
+}
+
+/* Qadriyatlar kartochkasidagi ikkinchi sarlavha */
+.mini-kind-2 {
+  display: block;
+  margin-top: var(--s-4);
+}
+
+/* She'riyat: kichik ekranlarda pero va shrift */
+@media (max-width: 600px) {
+  .poem-quill {
+    width: min(260px, 85%);
+  }
+
+  .poem blockquote p {
+    font-size: 27px;
   }
 }
